@@ -40,6 +40,7 @@ print(data.dtype)
 
 cv2.imshow('data*123', data*123)
 cv2.imshow('img', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
 
+cv2.waitKey(0)
+cv2.imwrite('./cho0h5.png', img) #
+cv2.destroyAllWindows()
