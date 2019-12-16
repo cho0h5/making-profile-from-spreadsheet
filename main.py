@@ -25,7 +25,7 @@ data = data.astype('uint8')
 
 colors = [[255, 255, 255], #
 [0, 0, 0],
-[88, 170, 75]]
+[75, 170, 88]]
 
 x, y = data.shape
 img = np.zeros((x, y, 3), dtype='uint8')
