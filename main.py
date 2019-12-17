@@ -2,6 +2,37 @@ import numpy as np
 import pandas as pd
 import cv2
 
+def resize2x(img) :
+    h, w, c = img.shape
+    resized_img = np.zeros((h*2, w*2, c), dtype='uint8')
+
+    for i in range(h) :
+        for j in range(w) :
+            resized_img[i*2, j*2] = img[i, j]
+            resized_img[i*2+1, j*2] = img[i, j]
+            resized_img[i*2, j*2+1] = img[i, j]
+            resized_img[i*2+1, j*2+1] = img[i, j]
+
+    return resized_img
+    
+def margin(img) :
+    h, w, c = img.shape
+
+    if w > h :
+        start_point = int((w - h) / 2)
+        resized_img = np.ones((w, w, c), dtype='uint8')
+        resized_img = resized_img * 255
+        for i in range(h) :
+            for j in range(w) :
+                resized_img[start_point + i, j] = img[i, j]
+        
+#    else :
+#        resized_img = np.zeros((h*2, h*2, c), dtype='uint8')
+
+    return resized_img
+
+
+
 origin = pd.read_excel('./cho0h5.xlsx')
 
 columns = origin.columns.values
@@ -34,13 +65,16 @@ for i in range(x):
     for j in range(y):
         img[i, j] = colors[data[i, j]]
 
-print(colors)
-print(data)
-print(data.dtype)
+img = resize2x(img)
+img = resize2x(img)
+img = resize2x(img)
+img = resize2x(img)
+img = resize2x(img)
+img = resize2x(img)
 
-cv2.imshow('data*123', data*123)
-cv2.imshow('img', img)
+img = margin(img)
 
+cv2.imshow('profile', img)
 cv2.waitKey(0)
 cv2.imwrite('./cho0h5.png', img) #
 cv2.destroyAllWindows()
