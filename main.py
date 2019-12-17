@@ -33,6 +33,7 @@ def margin(img) :
 
 
 input_name = input("File Name : ")
+output_name = input_name.split('.')[0] + ".png"
 origin = pd.read_excel("./data/" + input_name)
 
 columns = origin.columns.values
@@ -76,5 +77,5 @@ img = margin(img)
 
 #cv2.imshow('profile', img)
 #cv2.waitKey(0)
-cv2.imwrite("./data/" + input_name + '.png', img) #
+cv2.imwrite("./data/" + output_name, img) #
 #cv2.destroyAllWindows()
