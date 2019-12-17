@@ -32,8 +32,8 @@ def margin(img) :
     return resized_img
 
 
-
-origin = pd.read_excel('./cho0h5.xlsx')
+input_name = input("File Name : ")
+origin = pd.read_excel("./data/" + input_name)
 
 columns = origin.columns.values
 data = origin.values
@@ -74,7 +74,7 @@ img = resize2x(img)
 
 img = margin(img)
 
-cv2.imshow('profile', img)
-cv2.waitKey(0)
-cv2.imwrite('./cho0h5.png', img) #
-cv2.destroyAllWindows()
+#cv2.imshow('profile', img)
+#cv2.waitKey(0)
+cv2.imwrite("./data/" + input_name + '.png', img) #
+#cv2.destroyAllWindows()
