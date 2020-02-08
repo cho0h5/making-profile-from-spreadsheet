@@ -33,7 +33,7 @@ def margin(img) :
 
 
 input_name = input("File Name : ")
-output_name = input_name.split('.')[0] + ".png"
+output_name = input_name.split('.')[0] + "_alpha.png"
 origin = pd.read_excel("./data/" + input_name)
 
 columns = origin.columns.values
@@ -60,11 +60,14 @@ colors = [[255, 255, 255], #
 [75, 170, 88]]
 
 x, y = data.shape
-img = np.zeros((x, y, 3), dtype='uint8')
+img = np.zeros((x, y, 4), dtype='uint8')
 
 for i in range(x):
     for j in range(y):
-        img[i, j] = colors[data[i, j]]
+        if data[i, j] == 0 :
+            img[i, j] = colors[data[i, j]] + [0]
+        else:
+            img[i, j] = colors[data[i, j]] + [255]
 
 img = resize2x(img)
 img = resize2x(img)
@@ -73,7 +76,7 @@ img = resize2x(img)
 img = resize2x(img)
 img = resize2x(img)
 
-img = margin(img)
+#img = margin(img)
 
 #cv2.imshow('profile', img)
 #cv2.waitKey(0)
